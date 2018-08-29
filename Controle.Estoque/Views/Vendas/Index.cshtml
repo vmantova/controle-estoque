@@ -1,0 +1,98 @@
+﻿@model List<Controle.Estoque.Models.Venda>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="panel panel-primary" style="margin-top:25px">
+        <div class="panel-heading">
+
+            <div class="row">
+                <div class="col-lg-1">
+                    <i class="fa fa-shopping-cart fa-4x"></i>
+                </div>
+
+                <div class="col-lg-4">
+                    <h2><strong>Lista de Vendas</strong></h2>
+                </div>
+                <div class="col-lg-offset-2">
+                    <a style="margin-top:14px" class="btn btn-success btn-lg" asp-controller="Vendas" asp-action="Create">
+                        Nova Venda
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-lg-1 control-label">Filtrar: </label>
+                <div class="col-lg-5">
+                    <input id="searchVenda" type="text" class="form-control" />
+                </div>
+                <button id="btnSearchVenda" type="button" class="btn btn-default btn-default"><i class="fas fa-search"></i></button>
+            </div>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Pedido
+                        </th>
+                        <th>
+                            Cliente
+                        </th>
+                        <th>
+                            Produto
+                        </th>
+                        <th>
+                            Quantidade
+                        </th>
+                        <th>
+                            Data da Venda
+                        </th>
+                        <th>
+                            Status da Venda
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var venda in Model)
+                    {
+                        <tr>
+                            <td>
+                                @venda.Pedido
+                            </td>
+                            <td>
+                                    @venda.Cliente.NomeCliente
+
+                            </td>
+                            <td>
+                                    @venda.Produto.Descricao
+                            </td>
+                            <td>
+                                @venda.Quantidade
+                            </td>
+                            <td>
+                                @venda.DataVenda
+                            </td>
+                            <td>
+                                @if (venda.StatusVenda == "A")
+                                {
+                                    <strong><span style="color:green">Ativa</span></strong>
+                                }
+                                else
+                                {
+                                    <strong><span style="color:red">Cancelada</span></strong>
+                                }
+                            </td>
+                            <td>
+                                <a title="Cancelar" asp-controller="Vendas" asp-action="Delete" asp-route-idVenda="@venda.Id" class="btn btn-danger btn-xs"><i class="fas fa-times"></i><i /></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

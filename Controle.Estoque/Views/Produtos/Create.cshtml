@@ -1,0 +1,100 @@
+﻿@model Controle.Estoque.Models.Produto
+
+@{
+    ViewData["Title"] = "Novo";
+}
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="margin-top:15px" class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2><i class="fas fa-plus-circle"></i><strong>&nbsp; Produto</strong></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class=" panel-body">
+                    <form id="ProdutosForm" name="ProdutosForm" class="form-horizontal" asp-controller="Produtos" asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <strong>Produto:</strong>
+                            </label>
+                            <div class="col-lg-8">
+                                <input placeholder="Descricao do Produto" asp-for="Descricao" class="form-control" />
+                                <span asp-validation-for="Descricao" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <strong>Categoria:</strong>
+                            </label>
+                            <div class="col-lg-2">
+                                @if (ViewBag.Categorias != null)
+                                {
+                                    <select required asp-for="CategoriaId" asp-items="@(new SelectList(ViewBag.Categorias,"Id","Descricao"))" class="form-control">
+                                        <option value=""></option>
+                                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+
+                                    </select>
+
+                                }
+                            </div>
+                            <label class="col-lg-2 control-label">Estoque Minimo:</label>
+                            <div class="col-lg-1">
+                                <input id="EstoqueMinimo" name="EstoqueMinimo" type="text"  class="form-control campo-numerico" />
+                                <span asp-validation-for="EstoqueMinimo" class="text-danger"></span>
+
+                            </div>
+                            <label class="col-lg-2 control-label">Estoque Atual:</label>
+                            <div class="col-lg-1">
+                                <input id="EstoqueAtual" name="EstoqueAtual" type="text" class="form-control campo-numerico" />
+                                <span asp-validation-for="EstoqueAtual" class="text-danger"></span>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <strong>Unidade de Medida:</strong>
+                            </label>
+                            <div class="col-lg-1">
+                                @if (ViewBag.Unidades != null)
+                                {
+                                    <select asp-for="UnidadeId" asp-items="@(new SelectList(ViewBag.Unidades,"Id","Sigla"))" class="form-control">
+                                        <option value=""></option>
+
+                                    </select>
+
+                                }
+                            </div>
+                            <label class="col-lg-1 control-label">
+                                <strong>Preço:</strong>
+                            </label>
+                            <div class="col-lg-1">
+                                <input asp-for="Preco" class="form-control" />
+                                <span asp-validation-for="Preco" class="text-danger"></span>
+
+                            </div>
+                            <label class="col-lg-1 control-label">Cor:</label>
+                            <div class="col-lg-4">
+                                <input asp-for="Cor" placeholder="Cor Predominante" class="form-control" />
+
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-lg-offset-8 text-center">
+                                <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+                                <a asp-controller="Estoque" asp-action="Index" class="btn btn-danger btn-lg">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model Controle.Estoque.Models.Cliente
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<hr />
+<div class="container">
+    <div style="margin-top:15px" class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4><i class="fas fa-plus-circle"></i><strong>&nbsp; Cliente</strong></h4>
+                </div>
+            </div>
+        </div>
+        <div class=" panel-body">
+            <form asp-action="Edit" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(x => x.IdCliente)
+                @Html.HiddenFor(x => x.Status)
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Nome: </label>
+                    <div class="col-lg-10">
+                        <input asp-for="NomeCliente" class="form-control" readonly  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">CPF/CNPJ:</label>
+                    <div class="col-lg-2">
+                        <input asp-for="Documento" class="form-control" maxlength="14" readonly/>
+                    </div>
+                    <label class="col-lg-1 control-label">Endereço:</label>
+                    <div class="col-lg-7">
+                        <input asp-for="Endereco" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Cidade:</label>
+                    <div class="col-lg-2">
+                        <input asp-for="Cidade" class="form-control" readonly/>
+                    </div>
+                    <label class="col-lg-1 control-label">UF:</label>
+                    <div class="col-lg-1">
+                        <input asp-for="Estado" class="form-control" maxlength="2" readonly />
+                    </div>
+                    <label class="col-lg-1 control-label">País:</label>
+                    <div class="col-lg-5">
+                        <input asp-for="Pais" class="form-control" readonly/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Email:</label>
+                    <div class="col-lg-4">
+                        <input asp-for="Email" class="form-control" readonly/>
+                    </div>
+                    <label class="col-lg-1 control-label">Telefone:</label>
+                    <div class="col-lg-5">
+                        <input asp-for="Telefone" class="form-control"readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-4 pull-left">
+                        <a asp-controller="Cliente" asp-action="Index" class="btn btn-warning btn-lg">Voltar</a>
+                    </div>
+                    <div class="col-lg-2">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

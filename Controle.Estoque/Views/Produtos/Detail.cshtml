@@ -1,0 +1,85 @@
+﻿@model Controle.Estoque.Models.Produto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="margin-top:15px" class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h4><i class="fas fa-search"></i><strong>&nbsp; Detalhes</strong></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class=" panel-body">
+                    <form class="form-horizontal" asp-controller="Produtos" asp-action="Edit" method="post">
+                        <div class="form-group">
+                            @Html.HiddenFor(x => x.Id)
+                            @Html.HiddenFor(x => x.Status)
+                            <label class="col-lg-2 control-label">
+                                <strong>Produto:</strong>
+                            </label>
+                            <div class="col-lg-8">
+                                <input placeholder="Descricao do Produto" asp-for="Descricao" class="form-control" readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <strong>Categoria:</strong>
+                            </label>
+                            <div class="col-lg-2">
+                                @if (ViewBag.Categorias != null)
+                                {
+                                    <select asp-for="CategoriaId" asp-items="@(new SelectList(ViewBag.Categorias,"Id","Descricao"))" class="form-control" disabled></select>
+
+                                }
+                            </div>
+                            <label class="col-lg-2 control-label">Estoque Minimo:</label>
+                            <div class="col-lg-1">
+                                <input asp-for="EstoqueMinimo"  class="form-control" readonly />
+                            </div>
+                            <label class="col-lg-2 control-label">Estoque Atual:</label>
+                            <div class="col-lg-1">
+                                <input asp-for="EstoqueAtual"  class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">
+                                <strong>Unidade de Medida:</strong>
+                            </label>
+                            <div class="col-lg-2">
+                                @if (ViewBag.Unidades != null)
+                                {
+                                    <select disabled asp-for="UnidadeId" asp-items="@(new SelectList(ViewBag.Unidades,"Id","Sigla"))" class="form-control"></select>
+
+                                }
+                            </div>
+                            <label class="col-lg-1 control-label">
+                                <strong>Preço:</strong>
+                            </label>
+                            <div class="col-lg-2">
+                                <input asp-for="Preco" class="form-control" readonly/>
+                            </div>
+                            <label class="col-lg-1 control-label">Cor:</label>
+                            <div class="col-lg-2">
+                                <input asp-for="Cor" placeholder="Cor Predominante" class="form-control" readonly/>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-lg-4 pull-left">
+                                <a asp-controller="Estoque" asp-action="Index" class="btn btn-warning btn-lg">Voltar</a>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

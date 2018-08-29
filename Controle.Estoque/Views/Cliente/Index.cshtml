@@ -1,0 +1,79 @@
+﻿@model List<Controle.Estoque.Models.Cliente>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="panel panel-primary" style="margin-top:25px">
+        <div class="panel-heading">
+
+            <div class="row">
+                <div class="col-lg-1">
+                    <i class="fa fa-users fa-4x"></i>
+                </div>
+           
+                <div class="col-lg-4">
+                    <h2><strong>Lista de Clientes</strong></h2>
+                </div>
+                <div class="col-lg-offset-2">
+                    <a style="margin-top:14px" class="btn btn-success btn-lg" asp-controller="Cliente" asp-action="Create">
+                        Novo Cliente
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-lg-1 control-label">Filtrar: </label>
+                <div class="col-lg-5">
+                    <input id="searchParam" type="text" class="form-control" />
+                </div>
+                <button id="btnSearch" type="button" class="btn btn-default btn-default"><i class="fas fa-search"></i></button>
+            </div>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                        <th>
+                            Cpf/Cnpj
+                        </th>
+                        <th>
+                            Telefone
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.IdCliente
+                            </td>
+                            <td>
+                                @item.NomeCliente
+                            </td>
+                            <td data-mask-for-cpf-cnpj>
+                                 @item.Documento
+                            </td>
+                            <td>
+                                @item.Telefone
+                            </td>
+                            <td>
+                                <a title="Editar" asp-controller="Cliente" asp-action="Edit" asp-route-idCliente="@item.IdCliente" class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
+                                <a title="Visualizar"asp-controller="Cliente" asp-action="Details" asp-route-idCliente="@item.IdCliente"  class=" btn btn-warning btn-xs"><i class="fas fa-search"></i></a>
+                                <a title="Deletar" asp-controller="Cliente" asp-action="Delete" asp-route-idCliente="@item.IdCliente" class="btn btn-danger btn-xs"><i class="fas fa-times"></i><i/></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

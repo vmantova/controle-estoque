@@ -1,0 +1,75 @@
+﻿@model List<Controle.Estoque.Models.Produto>
+@{
+    ViewData["Title"] = "Estoque";
+}
+
+<style>
+    .panel.panel-primary {
+        margin-top: 25px
+    }
+
+    #tabEstoque {
+        cursor: pointer
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <i class="fab fa-codepen fa-5x"></i>
+                    </div>
+                    <div class="col-lg-4">
+                        <h2> <strong> Produtos em estoque</strong></h2>
+                    </div>
+                    <div class="col-lg-5 col-lg-offset-2">
+                        <a style="margin-top:14px" class="btn btn-success btn-lg" asp-controller="Produtos" asp-action="Create">
+                            Novo Produto
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Filtrar: </label>
+                    <div class="col-lg-5">
+                        <input id="searchProd" type="text" class="form-control" />
+                    </div>
+                    <button id="btnSearchProd" type="button" class="btn btn-default btn-default"><i class="fas fa-search"></i></button>
+                </div>
+                <table id="tabEstoque" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Preço Unit.</th>
+                            <th>Uni. Medida</th>
+                            <th>Estoque Atual</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><strong>@item.Codigo</strong> </td>
+                                <td><strong>@item.Descricao</strong></td>
+                                <td><strong>@item.Categoria.Descricao</strong></td>
+                                <td><strong>@item.Preco</strong></td>
+                                <td><strong>@item.UnidadeMedida.Descricao</strong></td>
+                                <td><strong>@item.EstoqueAtual</strong></td>
+                                <td>
+                                    <a asp-controller="Produtos" asp-action="Edit" asp-route-id="@item.Id"  title="Editar" class="btn btn-info btn-xs"> <i class="fas fa-edit"></i> </a>
+                                    <a asp-controller="Produtos" asp-action="Detail" asp-route-id="@item.Id" title="Visualizar" class="btn btn-warning btn-xs"> <i class="fas fa-search"></i> </a>
+                                    <a asp-controller="Produtos" asp-action="ConfirmDelete" asp-route-id="@item.Id"  title="Excluir" class="btn btn-danger btn-xs"> <i class="fas fa-times"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

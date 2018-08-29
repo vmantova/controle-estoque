@@ -1,0 +1,84 @@
+﻿@model Controle.Estoque.Models.Cliente
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="container">
+    <div style="margin-top:15px" class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h4><i class="fas fa-plus-circle"></i><strong>&nbsp; Cliente</strong></h4>
+                </div>
+            </div>
+        </div>
+        <div class=" panel-body">
+            <form asp-action="Edit" class="form-horizontal">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(x => x.IdCliente)
+                @Html.HiddenFor(x => x.Status)
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Nome: </label>
+                    <div class="col-lg-10">
+                        <input asp-for="NomeCliente" class="form-control" />
+                        <span asp-validation-for="NomeCliente" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">CPF/CNPJ:</label>
+                    <div class="col-lg-2">
+                        <input asp-for="Documento" class="form-control" maxlength="14" type="text" data-mask-for-cpf-cnpj />
+                        <span asp-validation-for="Documento" class="text-danger" ></span>
+                    </div>
+                    <label class="col-lg-1 control-label">Endereço:</label>
+                    <div class="col-lg-7">
+                        <input asp-for="Endereco" class="form-control" />
+                        <span asp-validation-for="Endereco" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Cidade:</label>
+                    <div class="col-lg-2">
+                        <input asp-for="Cidade" class="form-control" />
+                        <span asp-validation-for="Cidade" class="text-danger"></span>
+                    </div>
+                    <label class="col-lg-1 control-label">UF:</label>
+                    <div class="col-lg-2">
+                        @if (ViewBag.Estados != null)
+                        {
+                            <select asp-for="Estado" asp-items="@(new SelectList(ViewBag.Estados,"Sigla","Nome"))" class="form-control"></select>
+                        }
+                    </div>
+                    <label class="col-lg-1 control-label">País:</label>
+                    <div class="col-lg-4">
+                        <input asp-for="Pais" class="form-control" />
+                        <span asp-validation-for="Pais" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Email:</label>
+                    <div class="col-lg-4">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <label class="col-lg-1 control-label">Telefone:</label>
+                    <div class="col-lg-5">
+                        <input asp-for="Telefone" class="form-control" />
+                        <span asp-validation-for="Telefone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-4 text-center">
+                        <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+                        <a asp-controller="Cliente" asp-action="Index" class="btn btn-danger btn-lg">Cancelar</a>
+                        <a asp-controller="Cliente" asp-action="Create" class="btn btn-warning btn-lg">Limpar</a>
+                    </div>
+                    <div class="col-lg-2">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

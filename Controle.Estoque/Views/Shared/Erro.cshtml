@@ -1,0 +1,23 @@
+﻿@model Controle.Estoque.Models.Erro
+
+@{
+    ViewData["Title"] = "Erro";
+}
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <a asp-controller="Locacao" asp-action="New">Voltar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-danger text-danger">
+                <h3> <strong>@Model.Mensagem</strong></h3>
+            </div>
+        </div>
+    </div>
+</div>
+

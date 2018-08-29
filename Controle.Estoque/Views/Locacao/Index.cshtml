@@ -1,0 +1,91 @@
+﻿
+@model List<Controle.Estoque.Models.Locacao>
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <i class="fab fa-codepen fa-5x"></i>
+                    </div>
+                    <div class="col-lg-4">
+                        <h2> <strong> Locações</strong></h2>
+                    </div>
+                    <div class="col-lg-2 col-lg-offset-2">
+                        <a style="margin-top:20px" asp-controller="Locacao" asp-action="New" class="btn btn-lg btn-success"><strong>Nova Locação</strong></a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-lg-1 control-label">Filtrar: </label>
+                    <div class="col-lg-5">
+                        <input id="searchLoc" type="text" class="form-control" />
+
+                    </div>
+                    <button id="btnSearchLoc" type="button" class="btn btn-default btn-default"><i class="fas fa-search"></i></button>
+                </div>
+                <table id="tabLocacoes" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Contato</th>
+                            <th>Data Devolução</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><strong>@item.Cliente.NomeCliente</strong> </td>
+                                <td><strong>@item.Cliente.Telefone</strong></td>
+                                <td><strong>@($"{item.DataDevolucao.Day}/0{item.DataDevolucao.Month}/{item.DataDevolucao.Year}")</strong></td>
+                                <td><strong>@item.Produto.Descricao</strong></td>
+                                <td><strong>@item.Quantidade</strong></td>
+                                <td><strong>@item.ValorTotal</strong></td>
+
+                                @if (item.Status == "C")
+                                {
+                                    <td class="success">
+                                        <strong><span style="color:green">Concluída</span></strong>
+                                    </td>
+
+                                }
+                                else if (item.DataDevolucao < DateTime.Now)
+                                {
+                                    <td class="danger">
+                                        <strong><span style="color:red">Atrasado</span></strong>
+                                    </td>
+
+                                }
+                                else
+                                {
+                                    <td class="warning">
+                                        <strong><span style="color:green">No Prazo</span></strong>
+                                    </td>
+
+                                }
+
+                                <td>
+                                    @if (item.Status != "C")
+                                    {
+                                        <a title="Retorno de Locação" asp-controller="Locacao" asp-action="Retorno" asp-route-id="@item.Id" class="btn btn-success btn-xs"><i class="fas fa-check-circle"></i></a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

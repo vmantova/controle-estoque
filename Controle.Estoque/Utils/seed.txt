@@ -1,0 +1,13 @@
+Unidades de Medida
+
+M - Metros
+CM - Centímetros
+
+
+Categorias
+
+Mesa
+Cadeira
+Estante
+Armário
+Prateleira
